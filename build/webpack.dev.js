@@ -16,6 +16,7 @@ var localPublicPath = "http://" + HOST + ":" + PORT + "/";
 
 config.output.publicPath = localPublicPath;
 config.entry.app.unshift("webpack-dev-server/client?" + localPublicPath);
+config.devtool = "inline-source-map";
 
 new WebpackDevServer(webpack(config), {
     hot: hot,

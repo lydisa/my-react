@@ -1,22 +1,45 @@
-import React from 'react'
-import FilterLink from '../containers/FilterLink'
+import React, { Component, PropTypes } from 'react'
 
-const Footer=()=>{
-    <p>
+export default class Footer extends Component {
+  renderFilter(filter, name) {
+    if (filter === this.props.filter) {
+      return name
+    }
+
+    return (
+      <a href='#' onClick={e => {
+        e.preventDefault()
+        this.props.onFilterChange(filter)
+      }}>
+        {name}
+      </a>
+    )
+  }
+
+  render() {
+    return (
+      <p>
         Show:
-        {"  "}
-        <FilterLink filter="SHOW_ALL">
-            SHOW_ALL
-        </FilterLink>
-        {", "}
-        <FilterLink filter="SHOW_ACTIVE">
-            SHOW_ACTIVE
-        </FilterLink>
-        {", "}
-        <FilterLink filter="SHOW_COMPLETED">
-            SHOW_COMPLETED
-        </FilterLink>
-    </p>
+        {' '}
+        {this.renderFilter('SHOW_ALL', 'All')}
+        {', '}
+        {this.renderFilter('SHOW_COMPLETED', 'Completed')}
+        {', '}
+        {this.renderFilter('SHOW_ACTIVE', 'Active')}
+        {', '}
+        {this.renderFilter('SHOW_REVERT', 'Revert')}
+        .
+      </p>
+    )
+  }
 }
 
-export default Footer
+Footer.propTypes = {
+  onFilterChange: PropTypes.func.isRequired,
+  filter: PropTypes.oneOf([
+    'SHOW_ALL',
+    'SHOW_COMPLETED',
+    'SHOW_ACTIVE',
+    'SHOW_REVERT'
+  ]).isRequired
+}

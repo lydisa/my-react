@@ -1,23 +1,26 @@
-import React,{PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import Todo from './Todo'
-const TodoList = ({todos,onTodoClick})=>(
-    <ul>
-    {todos.map(todo =>
-        <Todo key={todo.id}
-        {...todo}
-        onClick={()=>onTodoClick(todo.id)}
-        />
-        )}
-    </ul>
-)
 
-TodoList.propTypes = {
-    todos:PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.number.isRequired,
-        completed:PropTypes.bool.isRequired,
-        text:PropTypes.string.isRequired
-    }).isRequired).isRequired,
-    onTodoClick:PropTypes.func.isRequired
+export default class TodoList extends Component {
+  render() {
+    return (
+      <ul>
+        {this.props.todos.map((todo, index) =>
+          <Todo {...todo}
+                key={index}
+                onClick={() => this.props.onTodoClick(index)} 
+                onCompleteTodoClick={()=>this.props.onCompleteTodoClick(index)}/>
+        )}
+      </ul>
+    )
+  }
 }
 
-export default TodoList
+TodoList.propTypes = {
+  onTodoClick: PropTypes.func.isRequired,
+  onCompleteTodoClick: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired
+  }).isRequired).isRequired
+}

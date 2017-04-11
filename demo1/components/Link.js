@@ -6,7 +6,7 @@ const Link=({active,children,onClick})=>{
     return(
         <a href='#' onClick={e=>{
             e.preventDefault()
-            onclick()
+            onClick()
         }}
         >
         {children}
