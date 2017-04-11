@@ -77,7 +77,7 @@ config.module.loaders.push({
     exclude: /node_modules/,
     include: SRC_PATH,
     // 这里使用 loaders ，因为后面还需要添加 loader
-    loaders: ["babel-loader?cacheDirectory=" + CACHE_PATH]
+    loaders: ["babel-loader?presets[]=es2015"]
 });
 
 // 编译 sass
