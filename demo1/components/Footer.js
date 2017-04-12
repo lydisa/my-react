@@ -19,7 +19,7 @@ export default class Footer extends Component {
   render() {
     return (
       <p>
-        Show:
+        {/*Show:
         {' '}
         {this.renderFilter('SHOW_ALL', 'All')}
         {', '}
@@ -28,7 +28,20 @@ export default class Footer extends Component {
         {this.renderFilter('SHOW_ACTIVE', 'Active')}
         {', '}
         {this.renderFilter('SHOW_REVERT', 'Revert')}
-        .
+        .*/}
+        Show:
+    {" "}
+        <FilterLink2 filter="all">
+          All
+    </FilterLink2>
+        {", "}
+        <FilterLink2 filter="active">
+          Active
+    </FilterLink2>
+        {", "}
+        <FilterLink2 filter="completed">
+          Completed
+    </FilterLink2>
       </p>
     )
   }
